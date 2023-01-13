@@ -12,7 +12,6 @@ import {
   SimpleGrid,
   Input,
   Box,
-  Heading,
 } from "@chakra-ui/react";
 
 const colors = [
@@ -29,12 +28,11 @@ const colors = [
 ];
 
 interface IColorPicker {
-  headingText?: string;
   setColor: (val: string) => void;
   color: string;
 }
 
-const ColorPicker = ({ headingText, color, setColor }: IColorPicker) => {
+const ColorPicker = ({ color, setColor }: IColorPicker) => {
   return (
     <Box>
       <Popover variant="picker">

@@ -23,7 +23,8 @@ interface ITodoItemForm {
 const TodoItemForm = ({ isOpen, onClose }: ITodoItemForm) => {
   const [color, setColor] = useState("gray.500");
   const [title, setTitle] = useState("");
-  console.log(title);
+  const [description, setDescription] = useState("");
+
   return (
     <Modal isOpen={isOpen} onClose={onClose} isCentered={true}>
       <ModalOverlay />
@@ -39,7 +40,11 @@ const TodoItemForm = ({ isOpen, onClose }: ITodoItemForm) => {
 
             <FormControl mb="20px" variant="floating" isRequired>
               <FormLabel>Description</FormLabel>
-              <Textarea resize="none" />
+              <Textarea
+                resize="none"
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+              />
             </FormControl>
 
             <FormControl>
