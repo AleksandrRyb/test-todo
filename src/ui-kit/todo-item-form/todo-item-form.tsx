@@ -21,8 +21,9 @@ interface ITodoItemForm {
 }
 
 const TodoItemForm = ({ isOpen, onClose }: ITodoItemForm) => {
-  const [color, setColor] = React.useState("gray.500");
-
+  const [color, setColor] = useState("gray.500");
+  const [title, setTitle] = useState("");
+  console.log(title);
   return (
     <Modal isOpen={isOpen} onClose={onClose} isCentered={true}>
       <ModalOverlay />
@@ -33,7 +34,7 @@ const TodoItemForm = ({ isOpen, onClose }: ITodoItemForm) => {
           <Flex flexDirection="column" alignItems="space-between">
             <FormControl mb="20px" variant="floating" isRequired>
               <FormLabel>Title</FormLabel>
-              <Input />
+              <Input value={title} onChange={(e) => setTitle(e.target.value)} />
             </FormControl>
 
             <FormControl mb="20px" variant="floating" isRequired>
