@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   Modal,
   ModalContent,
@@ -20,6 +21,8 @@ interface ITodoItemForm {
 }
 
 const TodoItemForm = ({ isOpen, onClose }: ITodoItemForm) => {
+  const [color, setColor] = React.useState("gray.500");
+
   return (
     <Modal isOpen={isOpen} onClose={onClose} isCentered={true}>
       <ModalOverlay />
@@ -40,7 +43,7 @@ const TodoItemForm = ({ isOpen, onClose }: ITodoItemForm) => {
 
             <FormControl>
               <FormLabel mb="0px">Badge Color</FormLabel>
-              <ColorPicker />
+              <ColorPicker setColor={setColor} color={color} />
             </FormControl>
           </Flex>
         </ModalBody>

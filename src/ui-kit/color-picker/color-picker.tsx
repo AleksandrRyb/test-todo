@@ -30,10 +30,11 @@ const colors = [
 
 interface IColorPicker {
   headingText?: string;
+  setColor: (val: string) => void;
+  color: string;
 }
 
-const ColorPicker = ({ headingText }: IColorPicker) => {
-  const [color, setColor] = React.useState("gray.500");
+const ColorPicker = ({ headingText, color, setColor }: IColorPicker) => {
   return (
     <Box>
       <Popover variant="picker">
