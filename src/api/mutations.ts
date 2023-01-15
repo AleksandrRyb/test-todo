@@ -1,5 +1,7 @@
-import { AxiosResponse } from "./../../node_modules/axios/index.d";
 import axios from "axios";
+
+const PORT = 5555;
+const SERVER_URI = `http://localhost:${PORT}`;
 
 interface ITodo {
   id: string;
@@ -8,8 +10,6 @@ interface ITodo {
   colorBadge: string;
 }
 
-export const addTodo = async (newTodo: ITodo): Promise<AxiosResponse> => {
-  const response = await axios.post("/todos", newTodo);
-
-  return response;
+export const addTodo = async (newTodo: ITodo): Promise<void> => {
+  const response = await axios.post(`${SERVER_URI}/todos`, newTodo);
 };

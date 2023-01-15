@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useMutation } from "react-query";
+import { v4 as uuidv4 } from "uuid";
 import {
   Modal,
   ModalContent,
@@ -15,6 +16,7 @@ import {
   Flex,
 } from "@chakra-ui/react";
 import ColorPicker from "../color-picker";
+import { addTodo } from "../../api/mutations";
 
 interface ITodoItemForm {
   isOpen: boolean;
@@ -25,6 +27,26 @@ const TodoItemForm = ({ isOpen, onClose }: ITodoItemForm) => {
   const [color, setColor] = useState("gray.500");
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+
+  const mutation = useMutation(addTodo, {
+    onSuccess: () => {
+      console.log("success");
+    },
+    onError: () => {
+      console.log("error");
+    },
+  });
+
+  const onCreateTodo = async () => {
+    const todo = {
+      id: uuidv4(),
+      title,
+      description,
+      colorBadge: color,
+    };
+
+    await mutation.mutate(todo);
+  };
 
   return (
     <Modal isOpen={isOpen} onClose={onClose} isCentered={true}>
@@ -60,6 +82,7 @@ const TodoItemForm = ({ isOpen, onClose }: ITodoItemForm) => {
             Close
           </Button>
           <Button
+            onClick={onCreateTodo}
             bg="blue.100"
             color="textColor.white"
             _hover={{ bg: "blue.200" }}

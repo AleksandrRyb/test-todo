@@ -1,3 +1,22 @@
 {
-  "todos": []
+  "todos": [
+    {
+      "id": "daeffa",
+      "title": "afafef",
+      "description": "saefgsrgf",
+      "colorBadge": "blue.500"
+    },
+    {
+      "id": "daeffadaef",
+      "title": "dadfaef",
+      "description": "asefsrggsrswdawe",
+      "colorBadge": "gray.500"
+    },
+    {
+      "id": "3cdabf2b-17e2-4f0d-aa47-22701d00a4a5",
+      "title": "new todo",
+      "description": "new todo description",
+      "colorBadge": "green.500"
+    }
+  ]
 }
