@@ -55,6 +55,7 @@ const TodoItemForm = ({ isOpen, onClose }: ITodoItemForm) => {
       title,
       description,
       colorBadge: color,
+      opened: true,
       date,
     };
 

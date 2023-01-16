@@ -3,11 +3,12 @@ import axios from "axios";
 const PORT = 5555;
 const SERVER_URI = `http://localhost:${PORT}`;
 
-interface ITodo {
+export interface ITodo {
   id: string;
   title: string;
   description: string;
   colorBadge: string;
+  opened: boolean;
   date: Date;
 }
 
