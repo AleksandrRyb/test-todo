@@ -30,7 +30,7 @@ export const formTheme = extendTheme({
               px: 1,
               my: 2,
               transformOrigin: "left top",
-              color: "gray.500",
+              color: "gray.400",
             },
           },
         },

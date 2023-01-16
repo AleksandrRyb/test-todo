@@ -56,18 +56,23 @@ const TodoItemForm = ({ isOpen, onClose }: ITodoItemForm) => {
 
         <ModalBody>
           <Flex flexDirection="column" alignItems="space-between">
-            <FormControl mb="20px" variant="floating" isRequired>
+            <FormControl mb="20px" variant="floating">
+              <Input
+                placeholder=" "
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+              />
               <FormLabel>Title</FormLabel>
-              <Input value={title} onChange={(e) => setTitle(e.target.value)} />
             </FormControl>
 
-            <FormControl mb="20px" variant="floating" isRequired>
-              <FormLabel>Description</FormLabel>
+            <FormControl mb="20px" variant="floating">
               <Textarea
                 resize="none"
+                placeholder=" "
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
               />
+              <FormLabel>Description</FormLabel>
             </FormControl>
 
             <FormControl>
