@@ -1,11 +1,16 @@
 import React from "react";
+import { useQuery } from "react-query";
 import { Flex, Box, Heading, Button } from "@chakra-ui/react";
 import { SettingsIcon } from "@chakra-ui/icons";
+import { getTodos } from "../../api/queries";
 
 import AddTodoForm from "../../ui-kit/todo-item-form";
 
 const TodoWindow = () => {
   const [isOpen, setIsOpen] = React.useState(false);
+  const query = useQuery("todos", getTodos);
+
+  console.log(query);
 
   const onClose = () => {
     setIsOpen(false);
