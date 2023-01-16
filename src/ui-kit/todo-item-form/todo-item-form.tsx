@@ -58,7 +58,7 @@ const TodoItemForm = ({ isOpen, onClose }: ITodoItemForm) => {
       date,
     };
 
-    mutation.mutate(todo);
+    await mutation.mutateAsync(todo);
   };
 
   return (
@@ -75,6 +75,7 @@ const TodoItemForm = ({ isOpen, onClose }: ITodoItemForm) => {
                 isInvalid={Boolean(errors?.title)}
               >
                 <Input
+                  disabled={mutation.isLoading}
                   id="title"
                   placeholder=" "
                   {...register("title", {
@@ -105,6 +106,7 @@ const TodoItemForm = ({ isOpen, onClose }: ITodoItemForm) => {
                       message: "A description can't be empty",
                     },
                   })}
+                  disabled={mutation.isLoading}
                   id="description"
                   placeholder=" "
                   value={description}
@@ -125,6 +127,7 @@ const TodoItemForm = ({ isOpen, onClose }: ITodoItemForm) => {
               <FormControl isRequired>
                 <FormLabel mb="0px">Date</FormLabel>
                 <SingleDatepicker
+                  disabled={mutation.isLoading}
                   minDate={new Date(today)}
                   name="date-input"
                   date={date}
