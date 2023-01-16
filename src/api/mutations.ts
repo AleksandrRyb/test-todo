@@ -12,5 +12,5 @@ interface ITodo {
 }
 
 export const addTodo = async (newTodo: ITodo): Promise<void> => {
-  const response = await axios.post(`${SERVER_URI}/todos`, newTodo);
+  await axios.post(`${SERVER_URI}/todos`, newTodo);
 };
