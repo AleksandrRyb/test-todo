@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useMutation } from "react-query";
 import { v4 as uuidv4 } from "uuid";
+import { SingleDatepicker } from "chakra-dayzed-datepicker";
 import {
   Modal,
   ModalContent,
@@ -27,6 +28,10 @@ const TodoItemForm = ({ isOpen, onClose }: ITodoItemForm) => {
   const [color, setColor] = useState("gray.500");
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [date, setDate] = useState(new Date());
+
+  const currentDate = new Date();
+  const today = currentDate.setDate(currentDate.getDate() - 1);
 
   const mutation = useMutation(addTodo, {
     onSuccess: () => {
@@ -43,6 +48,7 @@ const TodoItemForm = ({ isOpen, onClose }: ITodoItemForm) => {
       title,
       description,
       colorBadge: color,
+      date,
     };
 
     await mutation.mutate(todo);
@@ -56,7 +62,7 @@ const TodoItemForm = ({ isOpen, onClose }: ITodoItemForm) => {
 
         <ModalBody>
           <Flex flexDirection="column" alignItems="space-between">
-            <FormControl mb="20px" variant="floating">
+            <FormControl mb="20px" variant="floating" isRequired>
               <Input
                 placeholder=" "
                 value={title}
@@ -65,7 +71,7 @@ const TodoItemForm = ({ isOpen, onClose }: ITodoItemForm) => {
               <FormLabel>Title</FormLabel>
             </FormControl>
 
-            <FormControl mb="20px" variant="floating">
+            <FormControl mb="20px" variant="floating" isRequired>
               <Textarea
                 resize="none"
                 placeholder=" "
@@ -75,9 +81,18 @@ const TodoItemForm = ({ isOpen, onClose }: ITodoItemForm) => {
               <FormLabel>Description</FormLabel>
             </FormControl>
 
-            <FormControl>
+            <FormControl mb="20px">
               <FormLabel mb="0px">Badge Color</FormLabel>
               <ColorPicker setColor={setColor} color={color} />
+            </FormControl>
+            <FormControl isRequired>
+              <FormLabel mb="0px">Date</FormLabel>
+              <SingleDatepicker
+                minDate={new Date(today)}
+                name="date-input"
+                date={date}
+                onDateChange={setDate}
+              />
             </FormControl>
           </Flex>
         </ModalBody>

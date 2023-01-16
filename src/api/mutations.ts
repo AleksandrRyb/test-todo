@@ -8,6 +8,7 @@ interface ITodo {
   title: string;
   description: string;
   colorBadge: string;
+  date: Date;
 }
 
 export const addTodo = async (newTodo: ITodo): Promise<void> => {
