@@ -12,7 +12,7 @@ export const getTodos = async () => {
 };
 
 const formatTodosForAccordion = (todos: ITodo[]) => {
-  let newTodos: { [key: string]: any } = {};
+  let newTodos: { [key: string]: ITodo[] } = {};
 
   todos.forEach((todo) => {
     const key = format(new Date(todo.date), "MM/dd/yyyy");
