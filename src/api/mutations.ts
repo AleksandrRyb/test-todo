@@ -1,7 +1,5 @@
 import axios from "axios";
-
-const PORT = 5555;
-const SERVER_URI = `http://localhost:${PORT}`;
+import { SERVER_URI } from "../constants/api-constants";
 
 export interface ITodo {
   id: string;
