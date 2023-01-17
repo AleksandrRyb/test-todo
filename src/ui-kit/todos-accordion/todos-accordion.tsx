@@ -12,7 +12,6 @@ import {
   Switch,
   Text,
 } from "@chakra-ui/react";
-import { v4 as uuidv4 } from "uuid";
 import type { ITodo } from "../../api/mutations";
 
 interface ITodosAccordion {
@@ -31,7 +30,7 @@ const TodosAccordion = ({ todosBundles }: ITodosAccordion) => {
           paddingLeft="15px"
           paddingRight="32px"
           css={{
-            "box-shadow":
+            boxsShadow:
               "16px 16px 20px rgba(0, 0, 0, 0.15), -8px -8px 20px rgba(255, 255, 255, 0.05)",
           }}
           bg="#282828"
@@ -69,31 +68,40 @@ const TodosAccordion = ({ todosBundles }: ITodosAccordion) => {
               </Flex>
             </AccordionButton>
           </Heading>
-          <AccordionPanel paddingX="0px">
+          <AccordionPanel padding="0px">
             <List>
               {todosBundles[todoBundleKey].map((todo) => (
-                <ListItem height="79px" mb="20px" key={todo.id}>
-                  <Flex>
-                    <Box
-                      height="40px"
-                      width="5px"
-                      marginRight="13px"
-                      borderRadius="3px"
-                      bg={todo.colorBadge}
-                    />
-                    <Flex flex="8" flexDirection="column">
-                      <Heading fontSize="24px" as="h2">
-                        {todo.title}
-                      </Heading>
-                      <Text>{todo.description}</Text>
-                    </Flex>
-                    <Switch
-                      display="flex"
-                      alignItems="center"
-                      size="md"
-                      colorScheme="blue"
-                    />
+                <ListItem
+                  display="flex"
+                  alignItems="center"
+                  height="79px"
+                  key={todo.id}
+                >
+                  <Box
+                    height="40px"
+                    width="5px"
+                    marginRight="13px"
+                    borderRadius="3px"
+                    bg={todo.colorBadge}
+                  />
+                  <Flex flex="8" flexDirection="column" justifyContent="center">
+                    <Heading lineHeight="1" fontSize="24px" as="h2">
+                      {todo.title}
+                    </Heading>
+                    <Text
+                      fontWeight="600"
+                      color="rgba(255, 255, 255, 0.6)"
+                      fontSize="14px"
+                    >
+                      {todo.description}
+                    </Text>
                   </Flex>
+                  <Switch
+                    display="flex"
+                    alignItems="center"
+                    size="md"
+                    colorScheme="blue"
+                  />
                 </ListItem>
               ))}
             </List>

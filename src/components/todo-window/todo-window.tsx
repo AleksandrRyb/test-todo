@@ -34,6 +34,9 @@ const TodoWindow = () => {
           "&::-webkit-scrollbar": {
             display: "none",
           },
+          "&": {
+            scrollbarWidth: "none",
+          },
         }}
         height="500px"
       >
