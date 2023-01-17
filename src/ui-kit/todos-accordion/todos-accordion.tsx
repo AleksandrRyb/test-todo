@@ -28,6 +28,8 @@ const TodosAccordion = ({ todosBundles }: ITodosAccordion) => {
           border="none"
           borderRadius="25px"
           marginBottom="32px"
+          paddingLeft="15px"
+          paddingRight="32px"
           css={{
             "box-shadow":
               "16px 16px 20px rgba(0, 0, 0, 0.15), -8px -8px 20px rgba(255, 255, 255, 0.05)",
@@ -42,35 +44,47 @@ const TodosAccordion = ({ todosBundles }: ITodosAccordion) => {
             borderRadius="25px"
           >
             <AccordionButton paddingX="0">
-              <Flex display="flex" justifyContent="space-between">
+              <Flex display="flex" justifyContent="space-between" width="100%">
                 <Box
                   marginRight="13px"
-                  marginLeft="13px"
                   height="40px"
-                  width="5px"
+                  width="5.32px"
                   borderRadius="3px"
                   bg="gray.500"
                 />
-                <Box fontSize="24px" fontStyle="Regular" marginRight="20px">
-                  {todoBundleKey} Tasks
-                </Box>
-                <AccordionIcon />
+                <Flex
+                  alignItems="center"
+                  width="100%"
+                  justifyContent="space-between"
+                >
+                  <Box fontSize="24px" fontStyle="Regular" marginRight="20px">
+                    {todoBundleKey} Tasks
+                  </Box>
+                  <AccordionIcon
+                    borderRadius="10px"
+                    color="#282828"
+                    bg="#F4F4F4"
+                  />
+                </Flex>
               </Flex>
             </AccordionButton>
           </Heading>
-          <AccordionPanel>
+          <AccordionPanel paddingX="0px">
             <List>
               {todosBundles[todoBundleKey].map((todo) => (
-                <ListItem mb="20px" key={todo.id}>
+                <ListItem height="79px" mb="20px" key={todo.id}>
                   <Flex>
                     <Box
-                      mr="10px"
+                      height="40px"
+                      width="5px"
+                      marginRight="13px"
                       borderRadius="3px"
-                      w="5px"
                       bg={todo.colorBadge}
                     />
                     <Flex flex="8" flexDirection="column">
-                      <Heading as="h3">{todo.title}</Heading>
+                      <Heading fontSize="24px" as="h2">
+                        {todo.title}
+                      </Heading>
                       <Text>{todo.description}</Text>
                     </Flex>
                     <Switch
