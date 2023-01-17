@@ -36,6 +36,12 @@ export const formTheme = extendTheme({
         },
       },
     },
+    Heading: {
+      // baseStyle: {
+      //   fontWeight: "600",
+      // },
+    },
+    Accordion: {},
   },
   colors: {
     blue: {
@@ -48,9 +54,5 @@ export const formTheme = extendTheme({
     gray: {
       100: "#222222",
     },
-  },
-  fonts: {
-    body: `"Abhaya Libre", serif`,
-    heading: `"Abhaya Libre", serif`,
   },
 });

@@ -7,8 +7,6 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { formTheme } from "./constants/chakra-constants";
 
-import "@fontsource/actor";
-
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );

@@ -22,14 +22,14 @@ const TodoWindow = () => {
       width="390px"
       height="500px"
       minHeight="200px"
-      paddingX="20px"
-      paddingY="13px"
       position="relative"
       bg="gray.100"
       borderTopRadius="30px"
     >
       <Box
         overflow="scroll"
+        paddingX="20px"
+        paddingY="13px"
         css={{
           "&::-webkit-scrollbar": {
             display: "none",
@@ -39,7 +39,7 @@ const TodoWindow = () => {
       >
         <Flex
           mb="15px"
-          paddingX="17px"
+          paddingX="10px"
           alignItems="center"
           justifyContent="space-between"
         >
