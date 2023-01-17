@@ -49,4 +49,8 @@ export const formTheme = extendTheme({
       100: "#222222",
     },
   },
+  fonts: {
+    body: `"Abhaya Libre", serif`,
+    heading: `"Abhaya Libre", serif`,
+  },
 });

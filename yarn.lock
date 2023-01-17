@@ -2113,6 +2113,11 @@
     minimatch "^3.1.2"
     strip-json-comments "^3.1.1"
 
+"@fontsource/abhaya-libre@^4.5.9":
+  version "4.5.9"
+  resolved "https://registry.yarnpkg.com/@fontsource/abhaya-libre/-/abhaya-libre-4.5.9.tgz#b4b4c3e23ef6f5032bee217ae8f8059f3f7f6c3f"
+  integrity sha512-pWGqj2I1yxy6Nu40QG9ovoNlZilSS8BjGaDtWPssTUTb9bJtp07b8nc+lf+qNvh6YfnjJ6SqiDhKkJznuI/bdg==
+
 "@fontsource/actor@^4.5.9":
   version "4.5.9"
   resolved "https://registry.yarnpkg.com/@fontsource/actor/-/actor-4.5.9.tgz#717316e0c7b0d1f44e19cbe279f3eb6002179bcb"
