@@ -28,9 +28,8 @@ const TodosAccordion = ({ todosBundles }: ITodosAccordion) => {
           borderRadius="25px"
           marginBottom="32px"
           paddingLeft="15px"
-          paddingRight="32px"
           css={{
-            boxsShadow:
+            boxShadow:
               "16px 16px 20px rgba(0, 0, 0, 0.15), -8px -8px 20px rgba(255, 255, 255, 0.05)",
           }}
           bg="#282828"
@@ -41,6 +40,7 @@ const TodosAccordion = ({ todosBundles }: ITodosAccordion) => {
             display="flex"
             alignItems="center"
             borderRadius="25px"
+            paddingRight="32px"
           >
             <AccordionButton paddingX="0">
               <Flex display="flex" justifyContent="space-between" width="100%">
@@ -68,7 +68,7 @@ const TodosAccordion = ({ todosBundles }: ITodosAccordion) => {
               </Flex>
             </AccordionButton>
           </Heading>
-          <AccordionPanel padding="0px">
+          <AccordionPanel padding="0px" paddingRight="10px">
             <List>
               {todosBundles[todoBundleKey].map((todo) => (
                 <ListItem
@@ -84,20 +84,36 @@ const TodosAccordion = ({ todosBundles }: ITodosAccordion) => {
                     borderRadius="3px"
                     bg={todo.colorBadge}
                   />
-                  <Flex flex="8" flexDirection="column" justifyContent="center">
-                    <Heading lineHeight="1" fontSize="24px" as="h2">
+                  <Flex
+                    width="70%"
+                    marginRight="10%"
+                    flexDirection="column"
+                    justifyContent="center"
+                  >
+                    <Heading
+                      overflow="hidden"
+                      whiteSpace="nowrap"
+                      textOverflow="ellipsis"
+                      lineHeight="1"
+                      fontSize="24px"
+                      as="h2"
+                    >
                       {todo.title}
                     </Heading>
                     <Text
                       fontWeight="600"
-                      color="rgba(255, 255, 255, 0.6)"
                       fontSize="14px"
+                      color="rgba(255, 255, 255, 0.6)"
+                      overflow="hidden"
+                      whiteSpace="nowrap"
+                      textOverflow="ellipsis"
                     >
                       {todo.description}
                     </Text>
                   </Flex>
                   <Switch
-                    display="flex"
+                    width="15%"
+                    display="block"
                     alignItems="center"
                     size="md"
                     colorScheme="blue"
