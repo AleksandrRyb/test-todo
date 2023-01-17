@@ -28,27 +28,37 @@ const TodoWindow = () => {
       bg="gray.100"
       borderTopRadius="30px"
     >
-      <Flex
-        mb="15px"
-        paddingX="17px"
-        alignItems="center"
-        justifyContent="space-between"
+      <Box
+        overflow="scroll"
+        css={{
+          "&::-webkit-scrollbar": {
+            display: "none",
+          },
+        }}
+        height="500px"
       >
-        <Heading fontSize="36px" as="h1">
-          To Do
-        </Heading>
-        <SettingsIcon width="28.5px" height="30px" />
-      </Flex>
+        <Flex
+          mb="15px"
+          paddingX="17px"
+          alignItems="center"
+          justifyContent="space-between"
+        >
+          <Heading fontSize="36px" as="h1">
+            To Do
+          </Heading>
+          <SettingsIcon width="28.5px" height="30px" />
+        </Flex>
 
-      {query.isLoading && (
-        <Stack>
-          <Skeleton borderRadius="25px" height="79px" />
-          <Skeleton borderRadius="25px" height="79px" />
-          <Skeleton borderRadius="25px" height="79px" />
-        </Stack>
-      )}
+        {query.isLoading && (
+          <Stack>
+            <Skeleton borderRadius="25px" height="79px" />
+            <Skeleton borderRadius="25px" height="79px" />
+            <Skeleton borderRadius="25px" height="79px" />
+          </Stack>
+        )}
 
-      {query.data && <TodosAccordion todosBundles={query.data} />}
+        {query.data && <TodosAccordion todosBundles={query.data} />}
+      </Box>
 
       <Button
         onClick={() => setIsOpen(!isOpen)}
