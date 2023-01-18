@@ -11,8 +11,6 @@ const TodoWindow = () => {
   const [isOpen, setIsOpen] = React.useState(false);
   const query = useQuery("todos", getTodos);
 
-  console.log(query);
-
   const onClose = () => {
     setIsOpen(false);
   };

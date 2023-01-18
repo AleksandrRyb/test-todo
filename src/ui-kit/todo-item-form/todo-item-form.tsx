@@ -46,6 +46,7 @@ const TodoItemForm = ({ isOpen, onClose }: ITodoItemForm) => {
       setDescription("");
       setDate(new Date());
       setColor("gray.500");
+      onClose();
     },
   });
 
