@@ -7,7 +7,7 @@ interface ITodoListItem {
 
 const TodoListItem = ({ todo }: ITodoListItem) => {
   return (
-    <ListItem display="flex" alignItems="center" height="79px" key={todo.id}>
+    <ListItem display="flex" alignItems="center" height="79px">
       <Box
         height="40px"
         width="5px"

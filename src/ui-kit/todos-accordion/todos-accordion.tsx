@@ -10,6 +10,7 @@ import {
   List,
 } from "@chakra-ui/react";
 import type { ITodo } from "../../api/mutations";
+import { sortByDate } from "../../utils/array-utils";
 import TodoListItem from "../todo-list-item";
 
 interface ITodosAccordion {
@@ -20,12 +21,7 @@ const TodosAccordion = ({ todosBundles }: ITodosAccordion) => {
   return (
     <Accordion allowMultiple>
       {Object.keys(todosBundles)
-        .sort((a, b) => {
-          const aDate = new Date(a).getTime();
-          const bDate = new Date(b).getTime();
-
-          return aDate - bDate;
-        })
+        .sort(sortByDate)
         .map((todoBundleKey) => (
           <AccordionItem
             key={todoBundleKey}
@@ -80,7 +76,7 @@ const TodosAccordion = ({ todosBundles }: ITodosAccordion) => {
             <AccordionPanel padding="0px" paddingRight="10px">
               <List>
                 {todosBundles[todoBundleKey].map((todo) => (
-                  <TodoListItem todo={todo} />
+                  <TodoListItem todo={todo} key={todo.id} />
                 ))}
               </List>
             </AccordionPanel>
