@@ -1,12 +1,21 @@
 import React, { useState } from "react";
 import { useQuery } from "react-query";
-import { Flex, Box, Heading, Button, Stack, Skeleton } from "@chakra-ui/react";
+import {
+  Flex,
+  Box,
+  Heading,
+  Button,
+  Stack,
+  Skeleton,
+  List,
+} from "@chakra-ui/react";
 import { SettingsIcon } from "@chakra-ui/icons";
 import { getTodos } from "../../api/queries";
 
 import AddTodoForm from "../../ui-kit/todo-item-form";
 import TodosAccordion from "../../ui-kit/todos-accordion";
 import TodayTodosForm from "../../ui-kit/today-todos-form";
+import TodoListItem from "../../ui-kit/todo-list-item";
 
 const TodoWindow = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -17,10 +26,10 @@ const TodoWindow = () => {
     setIsOpen(false);
   };
 
-  console.log(isChecked);
+  console.log(query.data);
+
   const onCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setIsChecked(!isChecked);
-    console.log(e.target.checked);
   };
 
   return (
@@ -66,6 +75,24 @@ const TodoWindow = () => {
             <Skeleton borderRadius="25px" height="79px" />
             <Skeleton borderRadius="25px" height="79px" />
           </Stack>
+        )}
+
+        {isChecked && query.data && (
+          <List
+            border="none"
+            borderRadius="25px"
+            marginBottom="32px"
+            paddingLeft="15px"
+            css={{
+              boxShadow:
+                "16px 16px 20px rgba(0, 0, 0, 0.15), -8px -8px 20px rgba(255, 255, 255, 0.05)",
+            }}
+            bg="#282828"
+          >
+            {query.data["01/17/2023"].map((todo) => (
+              <TodoListItem todo={todo} />
+            ))}
+          </List>
         )}
 
         {query.data && <TodosAccordion todosBundles={query.data} />}
