@@ -1,18 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import { useQuery } from "react-query";
 import { Flex, Box, Heading, Button, Stack, Skeleton } from "@chakra-ui/react";
 import { SettingsIcon } from "@chakra-ui/icons";
 import { getTodos } from "../../api/queries";
 
 import AddTodoForm from "../../ui-kit/todo-item-form";
-import TodosAccordion from "../../ui-kit/todos-accordion/todos-accordion";
+import TodosAccordion from "../../ui-kit/todos-accordion";
+import TodayTodosForm from "../../ui-kit/today-todos-form";
 
 const TodoWindow = () => {
-  const [isOpen, setIsOpen] = React.useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [isChecked, setIsChecked] = useState(true);
   const query = useQuery("todos", getTodos);
 
-  const onClose = () => {
+  const onModalClose = () => {
     setIsOpen(false);
+  };
+
+  console.log(isChecked);
+  const onCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setIsChecked(!isChecked);
+    console.log(e.target.checked);
   };
 
   return (
@@ -50,6 +58,8 @@ const TodoWindow = () => {
           <SettingsIcon width="28.5px" height="30px" />
         </Flex>
 
+        <TodayTodosForm isChecked onChange={onCheckboxChange} />
+
         {query.isLoading && (
           <Stack>
             <Skeleton borderRadius="25px" height="79px" />
@@ -77,7 +87,7 @@ const TodoWindow = () => {
         Add Todo
       </Button>
 
-      <AddTodoForm isOpen={isOpen} onClose={onClose} />
+      <AddTodoForm isOpen={isOpen} onClose={onModalClose} />
     </Box>
   );
 };
