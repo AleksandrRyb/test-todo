@@ -26,8 +26,6 @@ const TodoWindow = () => {
     setIsOpen(false);
   };
 
-  console.log(query.data);
-
   const onCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setIsChecked(!isChecked);
   };
@@ -90,7 +88,7 @@ const TodoWindow = () => {
             bg="#282828"
           >
             {query.data["01/17/2023"].map((todo) => (
-              <TodoListItem todo={todo} />
+              <TodoListItem todo={todo} key={todo.id} />
             ))}
           </List>
         )}
