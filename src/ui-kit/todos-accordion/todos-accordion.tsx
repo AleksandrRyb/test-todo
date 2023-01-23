@@ -9,9 +9,9 @@ import {
   Heading,
   List,
 } from "@chakra-ui/react";
-import { format } from "date-fns";
 import type { ITodo } from "../../api/mutations";
 import { sortByDate } from "../../utils/array-utils";
+import { converDataToTodayOrYestoday } from "../../utils/todos-utils";
 import TodoListItem from "../todo-list-item";
 
 interface ITodosAccordion {
@@ -19,29 +19,6 @@ interface ITodosAccordion {
 }
 
 const TodosAccordion = ({ todosBundles }: ITodosAccordion) => {
-  const converDataToTodayOrYestoday = (date: string) => {
-    const timeStamp = new Date().getTime();
-    const singleDay = 24 * 60 * 60 * 1000;
-
-    const yesterday = format(new Date(timeStamp - singleDay), "MM/dd/yyyy");
-    const tomorrow = format(new Date(timeStamp + singleDay), "MM/dd/yyyy");
-    const today = format(new Date(), "MM/dd/yyyy");
-
-    if (yesterday == date) {
-      return "Yesterday";
-    }
-
-    if (tomorrow == date) {
-      return "Tomorrow";
-    }
-
-    if (today == date) {
-      return "Today";
-    }
-
-    return date;
-  };
-
   return (
     <Accordion allowMultiple>
       {Object.keys(todosBundles)

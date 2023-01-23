@@ -16,6 +16,7 @@ import AddTodoForm from "../../ui-kit/todo-item-form";
 import TodosAccordion from "../../ui-kit/todos-accordion";
 import TodayTodosForm from "../../ui-kit/today-todos-form";
 import TodoListItem from "../../ui-kit/todo-list-item";
+import { isListHasTodayTask, returnTodayDate } from "../../utils/todos-utils";
 
 const TodoWindow = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -65,7 +66,29 @@ const TodoWindow = () => {
           <SettingsIcon width="28.5px" height="30px" />
         </Flex>
 
-        <TodayTodosForm isChecked onChange={onCheckboxChange} />
+        {query.data && isListHasTodayTask(query.data) && (
+          <TodayTodosForm isChecked onChange={onCheckboxChange} />
+        )}
+
+        {isChecked && query.data && (
+          <>
+            <List
+              border="none"
+              borderRadius="25px"
+              marginBottom="32px"
+              paddingLeft="15px"
+              css={{
+                boxShadow:
+                  "16px 16px 20px rgba(0, 0, 0, 0.15), -8px -8px 20px rgba(255, 255, 255, 0.05)",
+              }}
+              bg="#282828"
+            >
+              {query.data[returnTodayDate()].map((todo) => (
+                <TodoListItem todo={todo} key={todo.id} />
+              ))}
+            </List>
+          </>
+        )}
 
         {query.isLoading && (
           <Stack>
@@ -73,24 +96,6 @@ const TodoWindow = () => {
             <Skeleton borderRadius="25px" height="79px" />
             <Skeleton borderRadius="25px" height="79px" />
           </Stack>
-        )}
-
-        {isChecked && query.data && (
-          <List
-            border="none"
-            borderRadius="25px"
-            marginBottom="32px"
-            paddingLeft="15px"
-            css={{
-              boxShadow:
-                "16px 16px 20px rgba(0, 0, 0, 0.15), -8px -8px 20px rgba(255, 255, 255, 0.05)",
-            }}
-            bg="#282828"
-          >
-            {query.data["01/17/2023"].map((todo) => (
-              <TodoListItem todo={todo} key={todo.id} />
-            ))}
-          </List>
         )}
 
         {query.data && <TodosAccordion todosBundles={query.data} />}
