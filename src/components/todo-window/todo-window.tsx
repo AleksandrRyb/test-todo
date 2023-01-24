@@ -70,7 +70,7 @@ const TodoWindow = () => {
           <TodayTodosForm isChecked onChange={onCheckboxChange} />
         )}
 
-        {isChecked && query.data && (
+        {isChecked && query.data && isListHasTodayTask(query.data) && (
           <>
             <List
               border="none"
