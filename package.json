@@ -7,6 +7,8 @@
     "@chakra-ui/react": "^2.4.7",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
+    "@fontsource/abhaya-libre": "^4.5.9",
+    "@fontsource/actor": "^4.5.9",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^13.0.0",
     "@testing-library/user-event": "^13.2.1",
@@ -35,7 +37,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "server": "json-server --watch db.json --port 5555 --delay 2000"
+    "server": "json-server --watch db.json --port 5555 --delay 800"
   },
   "eslintConfig": {
     "extends": [

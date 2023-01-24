@@ -36,6 +36,12 @@ export const formTheme = extendTheme({
         },
       },
     },
+    Heading: {
+      // baseStyle: {
+      //   fontWeight: "600",
+      // },
+    },
+    Accordion: {},
   },
   colors: {
     blue: {

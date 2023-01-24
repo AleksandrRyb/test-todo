@@ -46,6 +46,7 @@ const TodoItemForm = ({ isOpen, onClose }: ITodoItemForm) => {
       setDescription("");
       setDate(new Date());
       setColor("gray.500");
+      onClose();
     },
   });
 
@@ -55,6 +56,7 @@ const TodoItemForm = ({ isOpen, onClose }: ITodoItemForm) => {
       title,
       description,
       colorBadge: color,
+      opened: true,
       date,
     };
 
@@ -93,6 +95,7 @@ const TodoItemForm = ({ isOpen, onClose }: ITodoItemForm) => {
                   {errors?.title && (errors?.title?.message as string)}
                 </FormErrorMessage>
               </FormControl>
+
               <FormControl
                 mb="20px"
                 variant="floating"
@@ -124,6 +127,7 @@ const TodoItemForm = ({ isOpen, onClose }: ITodoItemForm) => {
                 <FormLabel mb="0px">Badge Color</FormLabel>
                 <ColorPicker setColor={setColor} color={color} />
               </FormControl>
+
               <FormControl isRequired>
                 <FormLabel mb="0px">Date</FormLabel>
                 <SingleDatepicker
@@ -146,6 +150,7 @@ const TodoItemForm = ({ isOpen, onClose }: ITodoItemForm) => {
             >
               Close
             </Button>
+
             <Button
               isLoading={mutation.isLoading}
               type="submit"
