@@ -1,19 +1,45 @@
+import { useState } from "react";
 import { Box, Flex, Heading, ListItem, Switch, Text } from "@chakra-ui/react";
-import type { ITodo } from "../../api/mutations";
+import { openTodo, closeTodo, ITodo } from "../../api/mutations";
+import { useMutation } from "react-query";
 
 interface ITodoListItem {
   todo: ITodo;
 }
 
+interface IListItemView {
+  todo: ITodo;
+  isChecked: boolean;
+  onChangeChecked: (id: string) => void;
+}
+
 const TodoListItem = ({ todo }: ITodoListItem) => {
+  const [isChecked, setIsChecked] = useState(!todo.opened);
+
+  const mutation = useMutation(isChecked ? openTodo : closeTodo);
+
+  const onChangeChecked = async (id: string) => {
+    await mutation.mutateAsync(id);
+
+    setIsChecked(!isChecked);
+  };
+
   return (
     <ListItem display="flex" alignItems="center" height="79px">
-      <ListItemView todo={todo} />
+      <ListItemView
+        todo={todo}
+        isChecked={isChecked}
+        onChangeChecked={onChangeChecked}
+      />
     </ListItem>
   );
 };
 
-export const ListItemView = ({ todo }: { todo: ITodo }) => (
+export const ListItemView = ({
+  todo,
+  isChecked,
+  onChangeChecked,
+}: IListItemView) => (
   <>
     <Box
       height="40px"
@@ -29,6 +55,7 @@ export const ListItemView = ({ todo }: { todo: ITodo }) => (
       justifyContent="center"
     >
       <Heading
+        textDecoration={`${!todo.opened ? "line-through" : ""}`}
         overflow="hidden"
         whiteSpace="nowrap"
         textOverflow="ellipsis"
@@ -50,6 +77,8 @@ export const ListItemView = ({ todo }: { todo: ITodo }) => (
       </Text>
     </Flex>
     <Switch
+      onChange={() => onChangeChecked(todo.id)}
+      isChecked={isChecked}
       width="15%"
       display="block"
       alignItems="center"
