@@ -103,6 +103,14 @@
       "colorBadge": "green.500",
       "opened": true,
       "date": "2023-01-23T12:26:44.022Z"
+    },
+    {
+      "id": "d8e1ac54-6cd8-4cda-87d4-409b9c0a23d6",
+      "title": "today task 1",
+      "description": "description",
+      "colorBadge": "blue.500",
+      "opened": true,
+      "date": "2023-01-27T08:49:09.994Z"
     }
   ]
 }

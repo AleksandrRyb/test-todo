@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import { Box, Flex, Heading, ListItem, Switch, Text } from "@chakra-ui/react";
 import type { ITodo } from "../../api/mutations";
 
@@ -5,15 +6,31 @@ interface ITodoListItem {
   todo: ITodo;
 }
 
+interface IListItemView {
+  todo: ITodo;
+  isChecked: boolean;
+  setIsChecked: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
 const TodoListItem = ({ todo }: ITodoListItem) => {
+  const [isChecked, setIsChecked] = useState(false);
+
   return (
     <ListItem display="flex" alignItems="center" height="79px">
-      <ListItemView todo={todo} />
+      <ListItemView
+        todo={todo}
+        isChecked={isChecked}
+        setIsChecked={setIsChecked}
+      />
     </ListItem>
   );
 };
 
-export const ListItemView = ({ todo }: { todo: ITodo }) => (
+export const ListItemView = ({
+  todo,
+  isChecked,
+  setIsChecked,
+}: IListItemView) => (
   <>
     <Box
       height="40px"
@@ -50,6 +67,8 @@ export const ListItemView = ({ todo }: { todo: ITodo }) => (
       </Text>
     </Flex>
     <Switch
+      onChange={() => setIsChecked(!isChecked)}
+      isChecked={isChecked}
       width="15%"
       display="block"
       alignItems="center"
