@@ -15,9 +15,9 @@ export const addTodo = async (newTodo: ITodo): Promise<void> => {
 };
 
 export const closeTodo = async (id: string): Promise<void> => {
-  await axios.put(`${SERVER_URI}/todos/${id}`, { opened: false });
+  await axios.patch(`${SERVER_URI}/todos/${id}`, { opened: false });
 };
 
 export const openTodo = async (id: string): Promise<void> => {
-  await axios.put(`${SERVER_URI}/todos/${id}`, { opened: true });
+  await axios.patch(`${SERVER_URI}/todos/${id}`, { opened: true });
 };
