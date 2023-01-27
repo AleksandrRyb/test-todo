@@ -23,6 +23,8 @@ const TodoWindow = () => {
   const [isChecked, setIsChecked] = useState(true);
   const query = useQuery("todos", getTodos);
 
+  const data = query.data;
+
   const onModalClose = () => {
     setIsOpen(false);
   };
@@ -66,11 +68,11 @@ const TodoWindow = () => {
           <SettingsIcon width="28.5px" height="30px" />
         </Flex>
 
-        {query.data && isListHasTodayTask(query.data) && (
+        {data && isListHasTodayTask(data) && (
           <TodayTodosForm isChecked onChange={onCheckboxChange} />
         )}
 
-        {isChecked && query.data && isListHasTodayTask(query.data) && (
+        {isChecked && data && isListHasTodayTask(data) && (
           <>
             <List
               border="none"
@@ -84,7 +86,11 @@ const TodoWindow = () => {
               bg="#282828"
             >
               {query.data[returnTodayDate()].map((todo) => (
-                <TodoListItem todo={todo} key={todo.id} />
+                <TodoListItem
+                  refetch={query.refetch}
+                  todo={todo}
+                  key={todo.id}
+                />
               ))}
             </List>
           </>
@@ -98,7 +104,9 @@ const TodoWindow = () => {
           </Stack>
         )}
 
-        {query.data && <TodosAccordion todosBundles={query.data} />}
+        {query.data && (
+          <TodosAccordion refetch={query.refetch} todosBundles={query.data} />
+        )}
       </Box>
 
       <Button
