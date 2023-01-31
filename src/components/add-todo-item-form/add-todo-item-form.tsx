@@ -21,12 +21,12 @@ import {
 import ColorPicker from "components/color-picker";
 
 import { addTodo } from "api/mutations";
-import { refetch } from "types";
+import { QueryRefetch } from "types";
 
 interface ITodoItemForm {
   isOpen: boolean;
   onClose: () => void;
-  refetch: refetch;
+  refetch: QueryRefetch;
 }
 
 const AddTodoItemForm = ({ isOpen, onClose, refetch }: ITodoItemForm) => {

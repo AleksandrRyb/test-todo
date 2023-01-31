@@ -2,11 +2,11 @@ import { useState } from "react";
 import { useMutation } from "react-query";
 import { Box, Flex, Heading, ListItem, Switch, Text } from "@chakra-ui/react";
 import { openTodo, closeTodo } from "api/mutations";
-import { ITodo, refetch } from "types";
+import { ITodo, QueryRefetch } from "types";
 
 interface ITodoListItem {
   todo: ITodo;
-  refetch: refetch;
+  refetch: QueryRefetch;
 }
 
 interface IListItemView {

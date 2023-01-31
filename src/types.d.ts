@@ -7,13 +7,8 @@ export interface ITodo {
   date: Date;
 }
 
-export type refetch = <TPageData>(
+export type QueryRefetch = <TPageData>(
   options?: (RefetchOptions & RefetchQueryFilters<TPageData>) | undefined
-) => Promise<
-  QueryObserverResult<
-    {
-      [key: string]: ITodo[];
-    },
-    unknown
-  >
->;
+) => Promise<QueryObserverResult<FetchedTodo, unknown>>;
+
+export type FetchedTodo = { [key: string]: ITodo[] };

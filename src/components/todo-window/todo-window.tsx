@@ -17,19 +17,21 @@ import TodosAccordion from "components/todos-accordion";
 import TodayTodosCheckbox from "components/today-todos-checkbox";
 import TodoListItem from "components/todo-list-item";
 import { isListHasTodayTask, returnTodayDate } from "utils/todos-utils";
-import { ITodo, refetch } from "types";
+import { FetchedTodo, QueryRefetch } from "types";
 
 interface ITodayTaskList {
-  refetch: refetch;
-  data: { [key: string]: ITodo[] };
+  refetch: QueryRefetch;
+  todos: FetchedTodo;
 }
 
 const TodoWindow = () => {
+  const [todos, setTodos] = useState<FetchedTodo | undefined>(undefined);
+
   const [isOpen, setIsOpen] = useState(false);
   const [isChecked, setIsChecked] = useState(true);
-  const query = useQuery("todos", getTodos);
-
-  const data = query.data;
+  const { refetch, isLoading } = useQuery("todos", getTodos, {
+    onSuccess: (data) => setTodos(data),
+  });
 
   const onModalClose = () => {
     setIsOpen(false);
@@ -74,15 +76,15 @@ const TodoWindow = () => {
           <SettingsIcon width="28.5px" height="30px" />
         </Flex>
 
-        {data && isListHasTodayTask(data) && (
+        {todos && isListHasTodayTask(todos) && (
           <TodayTodosCheckbox isChecked onChange={onCheckboxChange} />
         )}
 
-        {isChecked && data && isListHasTodayTask(data) && (
-          <TodayTaskList data={data} refetch={query.refetch} />
+        {isChecked && todos && isListHasTodayTask(todos) && (
+          <TodayTaskList todos={todos} refetch={refetch} />
         )}
 
-        {query.isLoading && (
+        {isLoading && (
           <Stack>
             <Skeleton borderRadius="25px" height="79px" />
             <Skeleton borderRadius="25px" height="79px" />
@@ -90,9 +92,7 @@ const TodoWindow = () => {
           </Stack>
         )}
 
-        {query.data && (
-          <TodosAccordion refetch={query.refetch} todosBundles={query.data} />
-        )}
+        {todos && <TodosAccordion refetch={refetch} todosBundles={todos} />}
       </Box>
 
       <Button
@@ -112,7 +112,7 @@ const TodoWindow = () => {
       </Button>
 
       <AddTodoItemForm
-        refetch={query.refetch}
+        refetch={refetch}
         isOpen={isOpen}
         onClose={onModalClose}
       />
@@ -120,7 +120,7 @@ const TodoWindow = () => {
   );
 };
 
-const TodayTaskList = ({ data, refetch }: ITodayTaskList) => (
+const TodayTaskList = ({ todos, refetch }: ITodayTaskList) => (
   <List
     border="none"
     borderRadius="25px"
@@ -132,7 +132,7 @@ const TodayTaskList = ({ data, refetch }: ITodayTaskList) => (
     }}
     bg="#282828"
   >
-    {data[returnTodayDate()].map((todo) => (
+    {todos[returnTodayDate()].map((todo) => (
       <TodoListItem refetch={refetch} todo={todo} key={todo.id} />
     ))}
   </List>

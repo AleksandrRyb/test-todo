@@ -12,11 +12,11 @@ import {
 import { sortByDate } from "utils/array-utils";
 import { convertDataToTodayOrYesterday } from "utils/todos-utils";
 import TodoListItem from "components/todo-list-item";
-import { ITodo, refetch } from "types";
+import { ITodo, QueryRefetch } from "types";
 
 interface ITodosAccordion {
   todosBundles: { [key: string]: ITodo[] };
-  refetch: refetch;
+  refetch: QueryRefetch;
 }
 
 const TodosAccordion = ({ todosBundles, refetch }: ITodosAccordion) => {
