@@ -12,7 +12,7 @@ import {
 import { SettingsIcon } from "@chakra-ui/icons";
 import { getTodos } from "../../api/queries";
 
-import AddTodoForm from "../../ui-kit/todo-item-form";
+import TodoItemForm from "../../ui-kit/todo-item-form";
 import TodosAccordion from "../../ui-kit/todos-accordion";
 import TodayTodosForm from "../../ui-kit/today-todos-form";
 import TodoListItem from "../../ui-kit/todo-list-item";
@@ -125,7 +125,7 @@ const TodoWindow = () => {
         Add Todo
       </Button>
 
-      <AddTodoForm isOpen={isOpen} onClose={onModalClose} />
+      <TodoItemForm isOpen={isOpen} onClose={onModalClose} />
     </Box>
   );
 };
