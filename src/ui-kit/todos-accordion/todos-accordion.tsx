@@ -9,16 +9,33 @@ import {
   Heading,
   List,
 } from "@chakra-ui/react";
+import {
+  QueryObserverResult,
+  RefetchOptions,
+  RefetchQueryFilters,
+} from "react-query";
 import type { ITodo } from "../../api/mutations";
 import { sortByDate } from "../../utils/array-utils";
 import { converDataToTodayOrYestoday } from "../../utils/todos-utils";
 import TodoListItem from "../todo-list-item";
 
+export type refetch = <TPageData>(
+  options?: (RefetchOptions & RefetchQueryFilters<TPageData>) | undefined
+) => Promise<
+  QueryObserverResult<
+    {
+      [key: string]: ITodo[];
+    },
+    unknown
+  >
+>;
+
 interface ITodosAccordion {
   todosBundles: { [key: string]: ITodo[] };
+  refetch: refetch;
 }
 
-const TodosAccordion = ({ todosBundles }: ITodosAccordion) => {
+const TodosAccordion = ({ todosBundles, refetch }: ITodosAccordion) => {
   return (
     <Accordion allowMultiple>
       {Object.keys(todosBundles)
@@ -77,7 +94,7 @@ const TodosAccordion = ({ todosBundles }: ITodosAccordion) => {
             <AccordionPanel padding="0px" paddingRight="10px">
               <List>
                 {todosBundles[todoBundleKey].map((todo) => (
-                  <TodoListItem todo={todo} key={todo.id} />
+                  <TodoListItem refetch={refetch} todo={todo} key={todo.id} />
                 ))}
               </List>
             </AccordionPanel>
