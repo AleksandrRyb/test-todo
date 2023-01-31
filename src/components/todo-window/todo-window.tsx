@@ -12,10 +12,10 @@ import {
 import { SettingsIcon } from "@chakra-ui/icons";
 import { getTodos } from "../../api/queries";
 
-import TodoItemForm from "../../ui-kit/todo-item-form";
-import TodosAccordion from "../../ui-kit/todos-accordion";
-import TodayTodosForm from "../../ui-kit/today-todos-form";
-import TodoListItem from "../../ui-kit/todo-list-item";
+import TodoItemForm from "../todo-item-form";
+import TodosAccordion from "../todos-accordion";
+import TodayTodosForm from "../today-todos-form";
+import TodoListItem from "../todo-list-item";
 import { isListHasTodayTask, returnTodayDate } from "../../utils/todos-utils";
 
 const TodoWindow = () => {
