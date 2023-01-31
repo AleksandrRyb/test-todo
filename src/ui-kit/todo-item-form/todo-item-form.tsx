@@ -20,13 +20,15 @@ import {
 } from "@chakra-ui/react";
 import ColorPicker from "../color-picker";
 import { addTodo } from "../../api/mutations";
+import { refetch } from "../todos-accordion/todos-accordion";
 
 interface ITodoItemForm {
   isOpen: boolean;
   onClose: () => void;
+  refetch: refetch;
 }
 
-const TodoItemForm = ({ isOpen, onClose }: ITodoItemForm) => {
+const TodoItemForm = ({ isOpen, onClose, refetch }: ITodoItemForm) => {
   const [color, setColor] = useState("gray.500");
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -46,6 +48,7 @@ const TodoItemForm = ({ isOpen, onClose }: ITodoItemForm) => {
       setDescription("");
       setDate(new Date());
       setColor("gray.500");
+      refetch();
       onClose();
     },
   });

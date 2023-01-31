@@ -125,7 +125,11 @@ const TodoWindow = () => {
         Add Todo
       </Button>
 
-      <TodoItemForm isOpen={isOpen} onClose={onModalClose} />
+      <TodoItemForm
+        refetch={query.refetch}
+        isOpen={isOpen}
+        onClose={onModalClose}
+      />
     </Box>
   );
 };
