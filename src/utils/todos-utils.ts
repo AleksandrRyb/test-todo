@@ -1,5 +1,5 @@
 import { format } from "date-fns";
-import { ITodo } from "api/mutations";
+import { ITodo } from "types";
 
 export const formatTodosForAccordion = (todos: ITodo[]) => {
   const newTodos: { [key: string]: ITodo[] } = {};

@@ -9,26 +9,10 @@ import {
   Heading,
   List,
 } from "@chakra-ui/react";
-import {
-  QueryObserverResult,
-  RefetchOptions,
-  RefetchQueryFilters,
-} from "react-query";
-import type { ITodo } from "api/mutations";
 import { sortByDate } from "utils/array-utils";
 import { convertDataToTodayOrYesterday } from "utils/todos-utils";
 import TodoListItem from "components/todo-list-item";
-
-export type refetch = <TPageData>(
-  options?: (RefetchOptions & RefetchQueryFilters<TPageData>) | undefined
-) => Promise<
-  QueryObserverResult<
-    {
-      [key: string]: ITodo[];
-    },
-    unknown
-  >
->;
+import { ITodo, refetch } from "types";
 
 interface ITodosAccordion {
   todosBundles: { [key: string]: ITodo[] };
