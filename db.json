@@ -13,7 +13,7 @@
       "title": "tooaefasef",
       "description": "afsedfsrg",
       "colorBadge": "purple.500",
-      "opened": true,
+      "opened": false,
       "date": "2023-01-30T21:00:00.000Z"
     },
     {
@@ -31,6 +31,14 @@
       "colorBadge": "green.500",
       "opened": false,
       "date": "2023-01-31T21:00:00.000Z"
+    },
+    {
+      "id": "923d8e34-1e86-446a-85d3-2e460bf18464",
+      "title": "task 6",
+      "description": "fsdzfresdg",
+      "colorBadge": "pink.500",
+      "opened": false,
+      "date": "2023-01-31T19:21:00.611Z"
     }
   ]
 }

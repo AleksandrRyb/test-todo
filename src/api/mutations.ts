@@ -1,5 +1,5 @@
 import axios from "axios";
-import { SERVER_URI } from "../constants/api-constants";
+import { SERVER_URI } from "constants/api-constants";
 
 export interface ITodo {
   id: string;
