@@ -16,7 +16,7 @@ import {
 } from "react-query";
 import type { ITodo } from "api/mutations";
 import { sortByDate } from "utils/array-utils";
-import { converDataToTodayOrYestoday } from "utils/todos-utils";
+import { convertDataToTodayOrYesterday } from "utils/todos-utils";
 import TodoListItem from "components/todo-list-item";
 
 export type refetch = <TPageData>(
@@ -80,7 +80,7 @@ const TodosAccordion = ({ todosBundles, refetch }: ITodosAccordion) => {
                     justifyContent="space-between"
                   >
                     <Box fontSize="24px" fontStyle="Regular" marginRight="20px">
-                      {converDataToTodayOrYestoday(todoBundleKey)} Tasks
+                      {convertDataToTodayOrYesterday(todoBundleKey)} Tasks
                     </Box>
                     <AccordionIcon
                       borderRadius="10px"
