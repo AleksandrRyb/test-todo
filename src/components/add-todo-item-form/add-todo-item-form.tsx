@@ -76,7 +76,7 @@ const AddTodoItemForm = ({ isOpen, onClose, refetch }: ITodoItemForm) => {
           <ModalBody>
             <Flex flexDirection="column" alignItems="space-between">
               <FormControl
-                mb="20px"
+                marginBottom="20px"
                 variant="floating"
                 isInvalid={Boolean(errors?.title)}
               >
@@ -149,7 +149,7 @@ const AddTodoItemForm = ({ isOpen, onClose, refetch }: ITodoItemForm) => {
             <Button
               disabled={mutation.isLoading}
               variant="link"
-              mr={3}
+              marginRight={3}
               onClick={onClose}
             >
               Close

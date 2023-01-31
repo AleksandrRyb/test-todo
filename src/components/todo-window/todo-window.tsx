@@ -14,9 +14,15 @@ import { getTodos } from "api/queries";
 
 import AddTodoItemForm from "components/add-todo-item-form";
 import TodosAccordion from "components/todos-accordion";
-import TodayTodosForm from "components/today-todos-form";
+import TodayTodosCheckbox from "components/today-todos-checkbox";
 import TodoListItem from "components/todo-list-item";
 import { isListHasTodayTask, returnTodayDate } from "utils/todos-utils";
+import { ITodo, refetch } from "types";
+
+interface ITodayTaskList {
+  refetch: refetch;
+  data: { [key: string]: ITodo[] };
+}
 
 const TodoWindow = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -69,31 +75,11 @@ const TodoWindow = () => {
         </Flex>
 
         {data && isListHasTodayTask(data) && (
-          <TodayTodosForm isChecked onChange={onCheckboxChange} />
+          <TodayTodosCheckbox isChecked onChange={onCheckboxChange} />
         )}
 
         {isChecked && data && isListHasTodayTask(data) && (
-          <>
-            <List
-              border="none"
-              borderRadius="25px"
-              marginBottom="32px"
-              paddingLeft="15px"
-              css={{
-                boxShadow:
-                  "16px 16px 20px rgba(0, 0, 0, 0.15), -8px -8px 20px rgba(255, 255, 255, 0.05)",
-              }}
-              bg="#282828"
-            >
-              {query.data[returnTodayDate()].map((todo) => (
-                <TodoListItem
-                  refetch={query.refetch}
-                  todo={todo}
-                  key={todo.id}
-                />
-              ))}
-            </List>
-          </>
+          <TodayTaskList data={data} refetch={query.refetch} />
         )}
 
         {query.isLoading && (
@@ -133,5 +119,23 @@ const TodoWindow = () => {
     </Box>
   );
 };
+
+const TodayTaskList = ({ data, refetch }: ITodayTaskList) => (
+  <List
+    border="none"
+    borderRadius="25px"
+    marginBottom="32px"
+    paddingLeft="15px"
+    css={{
+      boxShadow:
+        "16px 16px 20px rgba(0, 0, 0, 0.15), -8px -8px 20px rgba(255, 255, 255, 0.05)",
+    }}
+    bg="#282828"
+  >
+    {data[returnTodayDate()].map((todo) => (
+      <TodoListItem refetch={refetch} todo={todo} key={todo.id} />
+    ))}
+  </List>
+);
 
 export default TodoWindow;
