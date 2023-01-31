@@ -18,9 +18,10 @@ import {
   Button,
   Flex,
 } from "@chakra-ui/react";
-import ColorPicker from "../color-picker";
-import { addTodo } from "../../api/mutations";
-import { refetch } from "../todos-accordion/todos-accordion";
+import ColorPicker from "components/color-picker";
+import type { refetch } from "components/todos-accordion/todos-accordion";
+
+import { addTodo } from "api/mutations";
 
 interface ITodoItemForm {
   isOpen: boolean;

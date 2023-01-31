@@ -14,10 +14,10 @@ import {
   RefetchOptions,
   RefetchQueryFilters,
 } from "react-query";
-import type { ITodo } from "../../api/mutations";
-import { sortByDate } from "../../utils/array-utils";
-import { converDataToTodayOrYestoday } from "../../utils/todos-utils";
-import TodoListItem from "../todo-list-item";
+import type { ITodo } from "api/mutations";
+import { sortByDate } from "utils/array-utils";
+import { converDataToTodayOrYestoday } from "utils/todos-utils";
+import TodoListItem from "components/todo-list-item";
 
 export type refetch = <TPageData>(
   options?: (RefetchOptions & RefetchQueryFilters<TPageData>) | undefined

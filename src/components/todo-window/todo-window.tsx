@@ -10,13 +10,13 @@ import {
   List,
 } from "@chakra-ui/react";
 import { SettingsIcon } from "@chakra-ui/icons";
-import { getTodos } from "../../api/queries";
+import { getTodos } from "api/queries";
 
-import TodoItemForm from "../todo-item-form";
-import TodosAccordion from "../todos-accordion";
-import TodayTodosForm from "../today-todos-form";
-import TodoListItem from "../todo-list-item";
-import { isListHasTodayTask, returnTodayDate } from "../../utils/todos-utils";
+import TodoItemForm from "components/todo-item-form";
+import TodosAccordion from "components/todos-accordion";
+import TodayTodosForm from "components/today-todos-form";
+import TodoListItem from "components/todo-list-item";
+import { isListHasTodayTask, returnTodayDate } from "utils/todos-utils";
 
 const TodoWindow = () => {
   const [isOpen, setIsOpen] = useState(false);

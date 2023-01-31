@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { Box, Flex, Heading, ListItem, Switch, Text } from "@chakra-ui/react";
-import { openTodo, closeTodo, ITodo } from "../../api/mutations";
 import { useMutation } from "react-query";
-import { refetch } from "../todos-accordion/todos-accordion";
+import { Box, Flex, Heading, ListItem, Switch, Text } from "@chakra-ui/react";
+import { openTodo, closeTodo, ITodo } from "api/mutations";
+import { refetch } from "components/todos-accordion/todos-accordion";
 
 interface ITodoListItem {
   todo: ITodo;
