@@ -12,7 +12,7 @@ import {
 import { SettingsIcon } from "@chakra-ui/icons";
 import { getTodos } from "api/queries";
 
-import TodoItemForm from "components/todo-item-form";
+import AddTodoItemForm from "components/add-todo-item-form";
 import TodosAccordion from "components/todos-accordion";
 import TodayTodosForm from "components/today-todos-form";
 import TodoListItem from "components/todo-list-item";
@@ -125,7 +125,7 @@ const TodoWindow = () => {
         Add Todo
       </Button>
 
-      <TodoItemForm
+      <AddTodoItemForm
         refetch={query.refetch}
         isOpen={isOpen}
         onClose={onModalClose}

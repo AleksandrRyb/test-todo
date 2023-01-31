@@ -29,7 +29,7 @@ interface ITodoItemForm {
   refetch: refetch;
 }
 
-const TodoItemForm = ({ isOpen, onClose, refetch }: ITodoItemForm) => {
+const AddTodoItemForm = ({ isOpen, onClose, refetch }: ITodoItemForm) => {
   const [color, setColor] = useState("gray.500");
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -171,4 +171,4 @@ const TodoItemForm = ({ isOpen, onClose, refetch }: ITodoItemForm) => {
   );
 };
 
-export default TodoItemForm;
+export default AddTodoItemForm;
