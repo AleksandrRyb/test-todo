@@ -34,16 +34,16 @@ const AddTodoItemForm = ({ isOpen, onClose, refetch }: ITodoItemForm) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [date, setDate] = useState(new Date());
+  const currentDate = new Date();
+  const today = currentDate.setDate(currentDate.getDate() - 1);
+
   const {
     handleSubmit,
     register,
     formState: { errors },
   } = useForm();
 
-  const currentDate = new Date();
-  const today = currentDate.setDate(currentDate.getDate() - 1);
-
-  const mutation = useMutation(addTodo, {
+  const { isLoading, mutateAsync } = useMutation(addTodo, {
     onSuccess: () => {
       setTitle("");
       setDescription("");
@@ -64,7 +64,7 @@ const AddTodoItemForm = ({ isOpen, onClose, refetch }: ITodoItemForm) => {
       date,
     };
 
-    await mutation.mutateAsync(todo);
+    await mutateAsync(todo);
   };
 
   return (
@@ -81,7 +81,7 @@ const AddTodoItemForm = ({ isOpen, onClose, refetch }: ITodoItemForm) => {
                 isInvalid={Boolean(errors?.title)}
               >
                 <Input
-                  disabled={mutation.isLoading}
+                  disabled={isLoading}
                   id="title"
                   placeholder=" "
                   {...register("title", {
@@ -113,7 +113,7 @@ const AddTodoItemForm = ({ isOpen, onClose, refetch }: ITodoItemForm) => {
                       message: "A description can't be empty",
                     },
                   })}
-                  disabled={mutation.isLoading}
+                  disabled={isLoading}
                   id="description"
                   placeholder=" "
                   value={description}
@@ -135,7 +135,7 @@ const AddTodoItemForm = ({ isOpen, onClose, refetch }: ITodoItemForm) => {
               <FormControl isRequired>
                 <FormLabel mb="0px">Date</FormLabel>
                 <SingleDatepicker
-                  disabled={mutation.isLoading}
+                  disabled={isLoading}
                   minDate={new Date(today)}
                   name="date-input"
                   date={date}
@@ -147,7 +147,7 @@ const AddTodoItemForm = ({ isOpen, onClose, refetch }: ITodoItemForm) => {
 
           <ModalFooter>
             <Button
-              disabled={mutation.isLoading}
+              disabled={isLoading}
               variant="link"
               marginRight={3}
               onClick={onClose}
@@ -156,7 +156,7 @@ const AddTodoItemForm = ({ isOpen, onClose, refetch }: ITodoItemForm) => {
             </Button>
 
             <Button
-              isLoading={mutation.isLoading}
+              isLoading={isLoading}
               type="submit"
               bg="blue.100"
               color="textColor.white"

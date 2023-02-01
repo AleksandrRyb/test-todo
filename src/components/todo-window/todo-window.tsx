@@ -38,7 +38,7 @@ const TodoWindow = () => {
   };
 
   const onCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setIsChecked(!isChecked);
+    setIsChecked(e.target.checked);
   };
 
   return (
