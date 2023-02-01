@@ -3,14 +3,17 @@ import { Checkbox, Flex, Heading } from "@chakra-ui/react";
 
 interface ITodayTodosCheckbox {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  isChecked: boolean;
+  showTodayTask: boolean;
 }
 
-const TodayTodosCheckbox = ({ onChange, isChecked }: ITodayTodosCheckbox) => {
+const TodayTodosCheckbox = ({
+  onChange,
+  showTodayTask,
+}: ITodayTodosCheckbox) => {
   return (
     <Flex mb="15px">
       <Checkbox
-        defaultChecked={isChecked}
+        defaultChecked={showTodayTask}
         onChange={onChange}
         size="lg"
         borderRadius="5px"

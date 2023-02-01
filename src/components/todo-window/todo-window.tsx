@@ -27,9 +27,8 @@ interface ITodayTaskList {
 
 const TodoWindow = () => {
   const [todos, setTodos] = useState<FetchedTodo | undefined>(undefined);
-
   const [isOpen, setIsOpen] = useState(false);
-  const [isChecked, setIsChecked] = useState(true);
+  const [showTodayTask, setShowTodayTask] = useState(true);
   const { refetch, isLoading } = useQuery("todos", getTodos, {
     onSuccess: (data) => setTodos(data),
   });
@@ -38,8 +37,8 @@ const TodoWindow = () => {
     setIsOpen(false);
   };
 
-  const onCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setIsChecked(e.target.checked);
+  const onCheckboxChange = () => {
+    setShowTodayTask((prev) => !prev);
   };
 
   return (
@@ -79,10 +78,10 @@ const TodoWindow = () => {
         </Flex>
 
         {todos && isListHasTodayTask(todos) && (
-          <TodayTodosCheckbox isChecked onChange={onCheckboxChange} />
+          <TodayTodosCheckbox showTodayTask onChange={onCheckboxChange} />
         )}
 
-        {isChecked && todos && isListHasTodayTask(todos) && (
+        {showTodayTask && todos && isListHasTodayTask(todos) && (
           <TodayTaskList setTodos={setTodos} todos={todos} refetch={refetch} />
         )}
 
