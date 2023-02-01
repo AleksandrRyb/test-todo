@@ -22,6 +22,7 @@ import { FetchedTodo, QueryRefetch } from "types";
 interface ITodayTaskList {
   refetch: QueryRefetch;
   todos: FetchedTodo;
+  setTodos: React.Dispatch<React.SetStateAction<FetchedTodo | undefined>>;
 }
 
 const TodoWindow = () => {
@@ -81,7 +82,7 @@ const TodoWindow = () => {
         )}
 
         {isChecked && todos && isListHasTodayTask(todos) && (
-          <TodayTaskList todos={todos} refetch={refetch} />
+          <TodayTaskList setTodos={setTodos} todos={todos} refetch={refetch} />
         )}
 
         {isLoading && (
@@ -92,7 +93,13 @@ const TodoWindow = () => {
           </Stack>
         )}
 
-        {todos && <TodosAccordion refetch={refetch} todosBundles={todos} />}
+        {todos && (
+          <TodosAccordion
+            setTodos={setTodos}
+            refetch={refetch}
+            todosBundles={todos}
+          />
+        )}
       </Box>
 
       <Button
@@ -120,7 +127,7 @@ const TodoWindow = () => {
   );
 };
 
-const TodayTaskList = ({ todos, refetch }: ITodayTaskList) => (
+const TodayTaskList = ({ todos, refetch, setTodos }: ITodayTaskList) => (
   <List
     border="none"
     borderRadius="25px"
@@ -133,7 +140,12 @@ const TodayTaskList = ({ todos, refetch }: ITodayTaskList) => (
     bg="#282828"
   >
     {todos[returnTodayDate()].map((todo) => (
-      <TodoListItem refetch={refetch} todo={todo} key={todo.id} />
+      <TodoListItem
+        setTodos={setTodos}
+        refetch={refetch}
+        todo={todo}
+        key={todo.id}
+      />
     ))}
   </List>
 );

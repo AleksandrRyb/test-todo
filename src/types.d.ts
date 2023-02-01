@@ -3,7 +3,7 @@ export interface ITodo {
   title: string;
   description: string;
   colorBadge: string;
-  opened: boolean;
+  isClosed: boolean;
   date: Date;
 }
 

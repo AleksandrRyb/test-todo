@@ -12,14 +12,19 @@ import {
 import { sortByDate } from "utils/array-utils";
 import { convertDataToTodayOrYesterday } from "utils/todos-utils";
 import TodoListItem from "components/todo-list-item";
-import { ITodo, QueryRefetch } from "types";
+import { FetchedTodo, ITodo, QueryRefetch } from "types";
 
 interface ITodosAccordion {
   todosBundles: { [key: string]: ITodo[] };
   refetch: QueryRefetch;
+  setTodos: React.Dispatch<React.SetStateAction<FetchedTodo | undefined>>;
 }
 
-const TodosAccordion = ({ todosBundles, refetch }: ITodosAccordion) => {
+const TodosAccordion = ({
+  todosBundles,
+  refetch,
+  setTodos,
+}: ITodosAccordion) => {
   return (
     <Accordion allowMultiple>
       {Object.keys(todosBundles)
@@ -41,7 +46,12 @@ const TodosAccordion = ({ todosBundles, refetch }: ITodosAccordion) => {
             <AccordionPanel padding="0px" paddingRight="10px">
               <List>
                 {todosBundles[todoBundleKey].map((todo) => (
-                  <TodoListItem refetch={refetch} todo={todo} key={todo.id} />
+                  <TodoListItem
+                    setTodos={setTodos}
+                    refetch={refetch}
+                    todo={todo}
+                    key={todo.id}
+                  />
                 ))}
               </List>
             </AccordionPanel>

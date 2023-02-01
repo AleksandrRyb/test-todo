@@ -60,7 +60,7 @@ const AddTodoItemForm = ({ isOpen, onClose, refetch }: ITodoItemForm) => {
       title,
       description,
       colorBadge: color,
-      opened: true,
+      isClosed: false,
       date,
     };
 
