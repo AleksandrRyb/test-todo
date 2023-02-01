@@ -25,38 +25,38 @@ const TodosAccordion = ({
   refetch,
   setTodos,
 }: ITodosAccordion) => {
+  const sortedTodosBundles = Object.keys(todosBundles).sort(sortByDate);
+
   return (
     <Accordion allowMultiple>
-      {Object.keys(todosBundles)
-        .sort(sortByDate)
-        .map((todoBundleKey) => (
-          <AccordionItem
-            key={todoBundleKey}
-            border="none"
-            borderRadius="25px"
-            marginBottom="32px"
-            paddingLeft="15px"
-            css={{
-              boxShadow:
-                "16px 16px 20px rgba(0, 0, 0, 0.15), -8px -8px 20px rgba(255, 255, 255, 0.05)",
-            }}
-            bg="#282828"
-          >
-            <AccordionHeader todoBundleTitle={todoBundleKey} />
-            <AccordionPanel padding="0px" paddingRight="10px">
-              <List>
-                {todosBundles[todoBundleKey].map((todo) => (
-                  <TodoListItem
-                    setTodos={setTodos}
-                    refetch={refetch}
-                    todo={todo}
-                    key={todo.id}
-                  />
-                ))}
-              </List>
-            </AccordionPanel>
-          </AccordionItem>
-        ))}
+      {sortedTodosBundles.map((todoBundleKey) => (
+        <AccordionItem
+          key={todoBundleKey}
+          border="none"
+          borderRadius="25px"
+          marginBottom="32px"
+          paddingLeft="15px"
+          css={{
+            boxShadow:
+              "16px 16px 20px rgba(0, 0, 0, 0.15), -8px -8px 20px rgba(255, 255, 255, 0.05)",
+          }}
+          bg="#282828"
+        >
+          <AccordionHeader todoBundleTitle={todoBundleKey} />
+          <AccordionPanel padding="0px" paddingRight="10px">
+            <List>
+              {todosBundles[todoBundleKey].map((todo) => (
+                <TodoListItem
+                  setTodos={setTodos}
+                  refetch={refetch}
+                  todo={todo}
+                  key={todo.id}
+                />
+              ))}
+            </List>
+          </AccordionPanel>
+        </AccordionItem>
+      ))}
     </Accordion>
   );
 };

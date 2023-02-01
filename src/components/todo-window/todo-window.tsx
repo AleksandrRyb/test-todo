@@ -74,6 +74,7 @@ const TodoWindow = () => {
           <Heading fontSize="36px" as="h1">
             To Do
           </Heading>
+
           <SettingsIcon width="28.5px" height="30px" />
         </Flex>
 
