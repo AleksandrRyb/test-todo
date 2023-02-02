@@ -1,20 +1,23 @@
-import { Checkbox, Flex, Heading } from "@chakra-ui/react";
 import React from "react";
+import { Checkbox, Flex, Heading } from "@chakra-ui/react";
 
-interface ITodayTodosForm {
+interface ITodayTodosCheckbox {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  isChecked: boolean;
+  showTodayTask: boolean;
 }
 
-const TodayTodosForm = ({ onChange, isChecked }: ITodayTodosForm) => {
+const TodayTodosCheckbox = ({
+  onChange,
+  showTodayTask,
+}: ITodayTodosCheckbox) => {
   return (
     <Flex mb="15px">
       <Checkbox
-        defaultChecked={isChecked}
+        defaultChecked={showTodayTask}
         onChange={onChange}
         size="lg"
         borderRadius="5px"
-        mr="10px"
+        marginRight="10px"
       />
       <Heading fontSize="24px" fontStyle="Regular" marginRight="20px" as="h2">
         Today tasks:
@@ -23,4 +26,4 @@ const TodayTodosForm = ({ onChange, isChecked }: ITodayTodosForm) => {
   );
 };
 
-export default TodayTodosForm;
+export default TodayTodosCheckbox;

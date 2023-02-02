@@ -1,41 +1,32 @@
+import { FetchedTodo } from "./../types.d";
 import { format } from "date-fns";
-import { ITodo } from "../api/mutations";
+import { ITodo } from "types";
 
 export const formatTodosForAccordion = (todos: ITodo[]) => {
-  let newTodos: { [key: string]: ITodo[] } = {};
+  const newTodos: { [key: string]: ITodo[] } = {};
 
-  todos.forEach((todo) => {
+  for (const todo of todos) {
     const key = format(new Date(todo.date), "MM/dd/yyyy");
-
-    if (!newTodos.hasOwnProperty(key)) {
-      newTodos[key] = [todo];
-    } else {
+    if (newTodos[key]) {
       newTodos[key].push(todo);
+    } else {
+      newTodos[key] = [todo];
     }
-  });
+  }
 
   return newTodos;
 };
 
-export const converDataToTodayOrYestoday = (date: string) => {
-  const timeStamp = new Date().getTime();
+export const convertDataToTodayOrYesterday = (date: string) => {
   const singleDay = 24 * 60 * 60 * 1000;
 
-  const yesterday = format(new Date(timeStamp - singleDay), "MM/dd/yyyy");
-  const tomorrow = format(new Date(timeStamp + singleDay), "MM/dd/yyyy");
   const today = format(new Date(), "MM/dd/yyyy");
+  const yesterday = format(new Date(Date.now() - singleDay), "MM/dd/yyyy");
+  const tomorrow = format(new Date(Date.now() + singleDay), "MM/dd/yyyy");
 
-  if (yesterday == date) {
-    return "Yesterday";
-  }
-
-  if (tomorrow == date) {
-    return "Tomorrow";
-  }
-
-  if (today == date) {
-    return "Today";
-  }
+  if (date === today) return "Today";
+  if (date === yesterday) return "Yesterday";
+  if (date === tomorrow) return "Tomorrow";
 
   return date;
 };
@@ -44,6 +35,6 @@ export const returnTodayDate = () => {
   return format(new Date(), "MM/dd/yyyy");
 };
 
-export const isListHasTodayTask = (list: { [key: string]: ITodo[] }) => {
+export const isListHasTodayTask = (list: FetchedTodo) => {
   return list[returnTodayDate()];
 };

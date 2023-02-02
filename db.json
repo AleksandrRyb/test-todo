@@ -1,36 +1,44 @@
 {
   "todos": [
     {
-      "id": "103eb5e6-1c9b-4801-b110-c5fa922b6c3b",
-      "title": "sdawdae",
-      "description": "fdasefsrfgg",
+      "id": "670377a0-a61c-46f3-b2e3-5e011a5abab6",
+      "title": "Add task 1",
+      "description": "Task description",
+      "colorBadge": "blue.500",
+      "isClosed": false,
+      "date": "2023-02-01T21:00:00.000Z"
+    },
+    {
+      "id": "d5d1a8b4-6c70-4eb6-9ee8-1814dd450933",
+      "title": "today",
+      "description": "fsrgdsgdthth",
       "colorBadge": "gray.500",
-      "opened": true,
-      "date": "2023-01-27T13:27:58.648Z"
+      "isClosed": false,
+      "date": "2023-02-01T06:25:54.680Z"
     },
     {
-      "id": "932d5019-b51d-4032-abff-204df8ed369c",
-      "title": "tooaefasef",
-      "description": "afsedfsrg",
-      "colorBadge": "purple.500",
-      "opened": false,
-      "date": "2023-01-30T21:00:00.000Z"
-    },
-    {
-      "id": "04ed7fb5-3251-4fb9-bd17-1e6e77f06e39",
-      "title": "dfaefsef",
-      "description": "srfgrsgdrg",
+      "id": "ad9e98b4-eabe-48cf-a05b-cf9b8562ac9c",
+      "title": "csdzcvfsdvsr",
+      "description": "vgdtbvth",
       "colorBadge": "green.500",
-      "opened": true,
-      "date": "2023-01-27T14:46:28.609Z"
+      "isClosed": false,
+      "date": "2023-02-06T21:00:00.000Z"
     },
     {
-      "id": "113589c9-895b-44ab-ab97-b1fed2a1b75a",
-      "title": "new Todo 4",
-      "description": "daffsgf",
-      "colorBadge": "green.500",
-      "opened": false,
-      "date": "2023-01-31T21:00:00.000Z"
+      "id": "946d9e2b-7aa8-48fb-b1a5-d5bca7259f15",
+      "title": "фвфа",
+      "description": "вфуа",
+      "colorBadge": "blue.500",
+      "isClosed": false,
+      "date": "2023-02-09T21:00:00.000Z"
+    },
+    {
+      "id": "fcdb3f6f-8280-4615-82ac-43dc1d7c50f2",
+      "title": "New task",
+      "description": "description",
+      "colorBadge": "red.500",
+      "isClosed": true,
+      "date": "2023-02-02T11:29:29.106Z"
     }
   ]
 }

@@ -1,40 +1,48 @@
-import { useState } from "react";
-import { Box, Flex, Heading, ListItem, Switch, Text } from "@chakra-ui/react";
-import { openTodo, closeTodo, ITodo } from "../../api/mutations";
 import { useMutation } from "react-query";
-import { refetch } from "../todos-accordion/todos-accordion";
+import { Box, Flex, Heading, ListItem, Switch, Text } from "@chakra-ui/react";
+import { openTodo, closeTodo } from "api/mutations";
+import { FetchedTodo, ITodo, QueryRefetch } from "types";
 
 interface ITodoListItem {
   todo: ITodo;
-  refetch: refetch;
+  refetch: QueryRefetch;
+  setTodos: React.Dispatch<React.SetStateAction<FetchedTodo | undefined>>;
 }
 
 interface IListItemView {
   todo: ITodo;
   onChangeChecked: (id: string) => void;
+  isClosed: boolean;
 }
 
-const TodoListItem = ({ todo, refetch }: ITodoListItem) => {
-  const [__, setIsChecked] = useState(!todo.opened);
-
-  const mutation = useMutation(!todo.opened ? openTodo : closeTodo);
+const TodoListItem = ({ todo, refetch, setTodos }: ITodoListItem) => {
+  const mutation = useMutation(todo.isClosed ? openTodo : closeTodo, {
+    onSuccess: async () => {
+      const result = await refetch();
+      setTodos(result.data);
+    },
+  });
 
   const onChangeChecked = async (id: string) => {
     await mutation.mutateAsync(id);
-
-    setIsChecked(todo.opened);
-
-    await refetch();
   };
 
   return (
     <ListItem display="flex" alignItems="center" height="79px">
-      <ListItemView todo={todo} onChangeChecked={onChangeChecked} />
+      <ListItemView
+        todo={todo}
+        onChangeChecked={onChangeChecked}
+        isClosed={todo.isClosed}
+      />
     </ListItem>
   );
 };
 
-export const ListItemView = ({ todo, onChangeChecked }: IListItemView) => (
+export const ListItemView = ({
+  todo,
+  onChangeChecked,
+  isClosed,
+}: IListItemView) => (
   <>
     <Box
       height="40px"
@@ -50,7 +58,7 @@ export const ListItemView = ({ todo, onChangeChecked }: IListItemView) => (
       justifyContent="center"
     >
       <Heading
-        textDecoration={`${!todo.opened ? "line-through" : ""}`}
+        textDecoration={`${todo.isClosed ? "line-through" : ""}`}
         overflow="hidden"
         whiteSpace="nowrap"
         textOverflow="ellipsis"
@@ -73,7 +81,7 @@ export const ListItemView = ({ todo, onChangeChecked }: IListItemView) => (
     </Flex>
     <Switch
       onChange={() => onChangeChecked(todo.id)}
-      isChecked={!todo.opened}
+      isChecked={isClosed}
       width="15%"
       display="block"
       alignItems="center"

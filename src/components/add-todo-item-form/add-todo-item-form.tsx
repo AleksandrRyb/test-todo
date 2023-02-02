@@ -18,31 +18,32 @@ import {
   Button,
   Flex,
 } from "@chakra-ui/react";
-import ColorPicker from "../color-picker";
-import { addTodo } from "../../api/mutations";
-import { refetch } from "../todos-accordion/todos-accordion";
+import ColorPicker from "components/color-picker";
+
+import { addTodo } from "api/mutations";
+import { QueryRefetch } from "types";
 
 interface ITodoItemForm {
   isOpen: boolean;
   onClose: () => void;
-  refetch: refetch;
+  refetch: QueryRefetch;
 }
 
-const TodoItemForm = ({ isOpen, onClose, refetch }: ITodoItemForm) => {
+const AddTodoItemForm = ({ isOpen, onClose, refetch }: ITodoItemForm) => {
   const [color, setColor] = useState("gray.500");
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [date, setDate] = useState(new Date());
+  const currentDate = new Date();
+  const today = currentDate.setDate(currentDate.getDate() - 1);
+
   const {
     handleSubmit,
     register,
     formState: { errors },
   } = useForm();
 
-  const currentDate = new Date();
-  const today = currentDate.setDate(currentDate.getDate() - 1);
-
-  const mutation = useMutation(addTodo, {
+  const { isLoading, mutateAsync } = useMutation(addTodo, {
     onSuccess: () => {
       setTitle("");
       setDescription("");
@@ -59,11 +60,11 @@ const TodoItemForm = ({ isOpen, onClose, refetch }: ITodoItemForm) => {
       title,
       description,
       colorBadge: color,
-      opened: true,
+      isClosed: false,
       date,
     };
 
-    await mutation.mutateAsync(todo);
+    await mutateAsync(todo);
   };
 
   return (
@@ -75,12 +76,12 @@ const TodoItemForm = ({ isOpen, onClose, refetch }: ITodoItemForm) => {
           <ModalBody>
             <Flex flexDirection="column" alignItems="space-between">
               <FormControl
-                mb="20px"
+                marginBottom="20px"
                 variant="floating"
                 isInvalid={Boolean(errors?.title)}
               >
                 <Input
-                  disabled={mutation.isLoading}
+                  disabled={isLoading}
                   id="title"
                   placeholder=" "
                   {...register("title", {
@@ -112,7 +113,7 @@ const TodoItemForm = ({ isOpen, onClose, refetch }: ITodoItemForm) => {
                       message: "A description can't be empty",
                     },
                   })}
-                  disabled={mutation.isLoading}
+                  disabled={isLoading}
                   id="description"
                   placeholder=" "
                   value={description}
@@ -134,7 +135,7 @@ const TodoItemForm = ({ isOpen, onClose, refetch }: ITodoItemForm) => {
               <FormControl isRequired>
                 <FormLabel mb="0px">Date</FormLabel>
                 <SingleDatepicker
-                  disabled={mutation.isLoading}
+                  disabled={isLoading}
                   minDate={new Date(today)}
                   name="date-input"
                   date={date}
@@ -146,16 +147,16 @@ const TodoItemForm = ({ isOpen, onClose, refetch }: ITodoItemForm) => {
 
           <ModalFooter>
             <Button
-              disabled={mutation.isLoading}
+              disabled={isLoading}
               variant="link"
-              mr={3}
+              marginRight={3}
               onClick={onClose}
             >
               Close
             </Button>
 
             <Button
-              isLoading={mutation.isLoading}
+              isLoading={isLoading}
               type="submit"
               bg="blue.100"
               color="textColor.white"
@@ -170,4 +171,4 @@ const TodoItemForm = ({ isOpen, onClose, refetch }: ITodoItemForm) => {
   );
 };
 
-export default TodoItemForm;
+export default AddTodoItemForm;
