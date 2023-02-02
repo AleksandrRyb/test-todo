@@ -9,6 +9,7 @@
 - Axios
 - Chakra-ui
 - React Query
+- React Hook Form
 
 ### Backend
 - JSON Server
