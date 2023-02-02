@@ -5,6 +5,7 @@
 ### Frontend
 
 - CRA
+- Typescript
 - Axios
 - Chakra-ui
 - React Query
