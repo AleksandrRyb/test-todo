@@ -1,3 +1,4 @@
+import { FetchedTodo } from "./../types.d";
 import { format } from "date-fns";
 import { ITodo } from "types";
 
@@ -34,6 +35,6 @@ export const returnTodayDate = () => {
   return format(new Date(), "MM/dd/yyyy");
 };
 
-export const isListHasTodayTask = (list: { [key: string]: ITodo[] }) => {
+export const isListHasTodayTask = (list: FetchedTodo) => {
   return list[returnTodayDate()];
 };

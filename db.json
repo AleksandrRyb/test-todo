@@ -13,7 +13,7 @@
       "title": "today",
       "description": "fsrgdsgdthth",
       "colorBadge": "gray.500",
-      "isClosed": true,
+      "isClosed": false,
       "date": "2023-02-01T06:25:54.680Z"
     },
     {
@@ -23,6 +23,22 @@
       "colorBadge": "green.500",
       "isClosed": false,
       "date": "2023-02-06T21:00:00.000Z"
+    },
+    {
+      "id": "946d9e2b-7aa8-48fb-b1a5-d5bca7259f15",
+      "title": "фвфа",
+      "description": "вфуа",
+      "colorBadge": "blue.500",
+      "isClosed": false,
+      "date": "2023-02-09T21:00:00.000Z"
+    },
+    {
+      "id": "fcdb3f6f-8280-4615-82ac-43dc1d7c50f2",
+      "title": "New task",
+      "description": "description",
+      "colorBadge": "red.500",
+      "isClosed": true,
+      "date": "2023-02-02T11:29:29.106Z"
     }
   ]
 }

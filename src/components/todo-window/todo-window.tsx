@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import { useQuery } from "react-query";
 import {
   Flex,
@@ -32,6 +32,12 @@ const TodoWindow = () => {
   const { refetch, isLoading } = useQuery("todos", getTodos, {
     onSuccess: (data) => setTodos(data),
   });
+
+  const memoizedIsListHasTodayTask = useMemo(() => {
+    if (todos) {
+      return isListHasTodayTask(todos);
+    }
+  }, [todos]);
 
   const onModalClose = () => {
     setIsOpen(false);
@@ -77,11 +83,11 @@ const TodoWindow = () => {
           <SettingsIcon width="28.5px" height="30px" />
         </Flex>
 
-        {todos && isListHasTodayTask(todos) && (
+        {todos && memoizedIsListHasTodayTask && (
           <TodayTodosCheckbox showTodayTask onChange={onCheckboxChange} />
         )}
 
-        {showTodayTask && todos && isListHasTodayTask(todos) && (
+        {showTodayTask && todos && memoizedIsListHasTodayTask && (
           <TodayTaskList setTodos={setTodos} todos={todos} refetch={refetch} />
         )}
 

@@ -13,6 +13,7 @@ import { sortByDate } from "utils/array-utils";
 import { convertDataToTodayOrYesterday } from "utils/todos-utils";
 import TodoListItem from "components/todo-list-item";
 import { FetchedTodo, ITodo, QueryRefetch } from "types";
+import React from "react";
 
 interface ITodosAccordion {
   todosBundles: { [key: string]: ITodo[] };
@@ -90,4 +91,4 @@ const AccordionHeader = ({ todoBundleTitle }: { todoBundleTitle: string }) => (
   </Heading>
 );
 
-export default TodosAccordion;
+export default React.memo(TodosAccordion);
