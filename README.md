@@ -1,3 +1,24 @@
+# Todo List Development Test
+
+## Technology Stack
+
+### Frontend
+ - Create React App (CRA)
+ - Typescript
+ - Axios
+ - Chakra-UI
+ - React Query
+ - React Hook Form
+
+### Backend
+ - JSON Server
+
+## Project Setup Instructions
+ - Start the server using the command ```npm run server``` or ```yarn server```.
+ - Start the client using the command ```npm start``` or ```yarn start```.
+
+Note: The server currently runs on port 5555. If this port is already in use, you can change the port in the package.json under the server start command. After changing the port, don't forget to update the ```PORT``` variable in the ```src/constants/api-constants/``` path.
+
 # Тестовое задание по разработке Todo List
 
 ## Технологический стэк
